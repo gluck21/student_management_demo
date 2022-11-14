@@ -3,7 +3,6 @@ package com.example.student_management_demo.controller;
 
 import com.example.student_management_demo.dto.StudentResponseDto;
 import com.example.student_management_demo.dto.StudentSignUpDto;
-import com.example.student_management_demo.models.Student;
 import com.example.student_management_demo.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -2,6 +2,7 @@ package com.example.student_management_demo.service.serviceImpl;
 
 import com.example.student_management_demo.dto.StudentResponseDto;
 import com.example.student_management_demo.dto.StudentSignUpDto;
+import com.example.student_management_demo.exception.ResourceNotFoundException;
 import com.example.student_management_demo.models.Student;
 import com.example.student_management_demo.repositories.StudentRepository;
 import com.example.student_management_demo.service.StudentService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 //@RequiredArgsConstructor
@@ -56,12 +58,17 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentResponseDto getStudent(Long studentId) {
-        Student student = studentRepository.findById(studentId).get();
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(()-> new ResourceNotFoundException("Student not found", "enter a valid Id for this student"));
+//        if(student.isEmpty()){
+//            throw new ResourceNotFoundException("Student not found");
+//        }else {
         StudentResponseDto studentResponseDto = new StudentResponseDto();
         studentResponseDto.setId(student.getId());
         studentResponseDto.setName(student.getName());
         studentResponseDto.setEmail(student.getEmail());
         return studentResponseDto;
+//        }
     }
 
     @Override

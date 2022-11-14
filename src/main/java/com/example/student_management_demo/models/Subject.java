@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Data
@@ -15,16 +13,13 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "student_table")
-public class Student {
-
+public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String email;
-    private String password;
+    private String subjectCode;
 
-//    @OneToMany
-//    private List<Subject> subjectList = new ArrayList<>();
+    @ManyToOne()
+    private Student student;
 }
