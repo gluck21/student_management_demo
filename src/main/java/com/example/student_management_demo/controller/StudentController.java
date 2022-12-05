@@ -20,6 +20,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+
     @PostMapping("/sign-up")
     public ResponseEntity<String> signUp(@RequestBody StudentSignUpDto studentSignUpDto){
         studentService.studentSignUp(studentSignUpDto);
